@@ -3753,7 +3753,7 @@
 
                             <div class="search-box">
 
-                                <input type="text" id="searchProduct" placeholder="Buscar producto..." onkeyup="filterProducts()" aria-label="Buscar producto">
+                                <input type="text" id="searchProduct" class="form-input" placeholder="Buscar producto..." onkeyup="filterProducts()" aria-label="Buscar producto">
 
                             </div>
 
@@ -3815,7 +3815,7 @@
 
                                 <label id="paymentCodeLabel">Código de referencia</label>
 
-                                <input type="text" id="paymentCode" placeholder="Ej: 1234" maxlength="10" aria-label="Código de referencia">
+                                <input type="text" id="paymentCode" class="form-input" placeholder="Ej: 1234" maxlength="10" aria-label="Código de referencia">
 
                             </div>
 
@@ -3823,7 +3823,7 @@
 
                                 <label id="cashLabel">💵 Efectivo Recibido</label>
 
-                                <input type="number" id="cashReceived" placeholder="Monto con que paga el cliente..." oninput="calculateChange()" min="0" step="any" aria-label="Efectivo recibido">
+                                <input type="number" id="cashReceived" class="form-input" placeholder="Monto con que paga el cliente..." oninput="calculateChange()" min="0" step="any" aria-label="Efectivo recibido">
 
                                 <div id="changeDisplay" class="change-display" style="display: none;">
 
@@ -4715,7 +4715,11 @@
 
             const target = document.getElementById(section);
 
-            if (target) target.classList.add('show');
+            if (target) target.classList.add('show');
+
+            if (window.innerWidth <= 768) {
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+            }
 
             
 
