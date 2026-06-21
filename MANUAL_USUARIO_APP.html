@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario - App Negocio Mixto</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        
+        h1 { 
+            color: white;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #1e3c72;
+            border-bottom: 3px solid #2196F3;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        
+        .chapter {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .step {
+            background: #e3f2fd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .step ol { margin: 10px 0 0 0; }
+        
+        .tip {
+            background: #f0f7ea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .button {
+            background: #2196F3;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        .menu {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        ul { margin-left: 20px; }
+        li { margin: 8px 0; }
+        
+        .faq {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #9C27B0;
+        }
+        
+        .faq-q { font-weight: bold; color: #1e3c72; }
+        .faq-a { margin-top: 8px; color: #666; }
+        
+        .category {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 2px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .cat-charcuteria { background: #ff6b6b; }
+        .cat-viveres { background: #4CAF50; }
+        .cat-papeleria { background: #2196F3; }
+        
+        .img-placeholder {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 15px 0;
+            color: #999;
+            border: 2px dashed #ddd;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th { background: #f5f5f5; font-weight: 600; }
+        tr:hover { background: #f9f9f9; }
+        
+        .qr-code {
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        
+        .toc {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .toc ol { margin-left: 20px; }
+        .toc li { margin: 8px 0; }
+        .toc a { color: #2196F3; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>📱 MANUAL DE USUARIO</h1>
+    <h1 style="background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%); margin-top: -15px; margin-bottom: 30px;">
+        Sistema de Administración para tu Negocio
+    </h1>
+
+    <div class="chapter toc">
+        <h2>📑 Contenido</h2>
+        <ol>
+            <li>Inicio Rápido</li>
+            <li>Entender la Interfaz</li>
+            <li>Realizar una Venta (POS)</li>
+            <li>Gestionar Inventario</li>
+            <li>Ver Reportes</li>
+            <li>Gestionar Clientes</li>
+            <li>Administrar Empleados</li>
+            <li>Preguntas Frecuentes</li>
+            <li>Solución de Problemas</li>
+        </ol>
+    </div>
+
+    <!-- CAPÍTULO 1 -->
+    <div class="chapter">
+        <h2>1. 🚀 Inicio Rápido (5 minutos)</h2>
+        
+        <h3>Paso 1: Abrir la Aplicación</h3>
+        <div class="step">
+            <ol>
+                <li>Abre el archivo <code>APP_NEGOCIO_COMPLETA.html</code> en tu navegador</li>
+                <li>Espera a que cargue la pantalla de inicio de sesión</li>
+                <li>Verás un formulario con dos campos: "Usuario" y "Contraseña"</li>
+            </ol>
+        </div>
+
+        <h3>Paso 2: Iniciar Sesión</h3>
+        <div class="step">
+            <p><strong>Si eres el dueño/administrador:</strong></p>
+            <ul>
+                <li>Usuario: <code style="background: #f0f0f0; padding: 2px 6px;">admin</code></li>
+                <li>Contraseña: <code style="background: #f0f0f0; padding: 2px 6px;">123</code></li>
+            </ul>
+            <p><strong>Si eres empleado:</strong></p>
+            <ul>
+                <li>Usuario: <code style="background: #f0f0f0; padding: 2px 6px;">empleado</code></li>
+                <li>Contraseña: <code style="background: #f0f0f0; padding: 2px 6px;">123</code></li>
+            </ul>
+            <p>Haz clic en el botón <span class="button">Iniciar Sesión</span></p>
+        </div>
+
+        <h3>Paso 3: Ver el Panel Principal</h3>
+        <div class="step">
+            <p>Después de iniciar sesión, verás:</p>
+            <ul>
+                <li><strong>Panel izquierdo (sidebar):</strong> Menú de navegación con opciones</li>
+                <li><strong>Panel derecho:</strong> Contenido principal</li>
+                <li><strong>Tarjetas de información:</strong> Resumen del negocio</li>
+            </ul>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Consejo:</strong> Tómate un minuto para explorar. No hay botones peligrosos, 
+            puedes hacer clic en cualquier lugar para conocer cómo funciona.
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 2 -->
+    <div class="chapter">
+        <h2>2. 📺 Entender la Interfaz</h2>
+        
+        <h3>Menú Principal (Barra Izquierda)</h3>
+        <p>El menú del lado izquierdo tiene estas opciones:</p>
+        
+        <table>
+            <tr>
+                <th>Opción</th>
+                <th>Icono</th>
+                <th>Para qué sirve</th>
+                <th>Acceso</th>
+            </tr>
+            <tr>
+                <td>Panel Principal</td>
+                <td>📊</td>
+                <td>Ver resumen de tu negocio hoy</td>
+                <td>Admin + Empleado</td>
+            </tr>
+            <tr>
+                <td>Punto de Venta (POS)</td>
+                <td>🛒</td>
+                <td>Registrar ventas de productos</td>
+                <td>Admin + Empleado</td>
+            </tr>
+            <tr>
+                <td>Inventario</td>
+                <td>📦</td>
+                <td>Agregar/eliminar productos y ver stock</td>
+                <td>Admin solo</td>
+            </tr>
+            <tr>
+                <td>Clientes</td>
+                <td>👥</td>
+                <td>Registrar clientes y sus deudas</td>
+                <td>Admin solo</td>
+            </tr>
+            <tr>
+                <td>Empleados</td>
+                <td>👔</td>
+                <td>Agregar empleados y asignar roles</td>
+                <td>Admin solo</td>
+            </tr>
+            <tr>
+                <td>Reportes</td>
+                <td>📈</td>
+                <td>Ver ventas, ganancias y estadísticas</td>
+                <td>Admin + Empleado</td>
+            </tr>
+        </table>
+
+        <h3>Información de Usuario</h3>
+        <p>En la esquina superior izquierda ves tu nombre y rol actual. Para cerrar sesión, 
+        haz clic en el botón rojo <span class="button" style="background: #ff6b6b;">Cerrar Sesión</span> al final del menú.</p>
+
+        <h3>Encabezado Superior</h3>
+        <p>En cada página verás:</p>
+        <ul>
+            <li><strong>Título de la sección:</strong> Lo que estás haciendo ahora</li>
+            <li><strong>Fecha/Hora:</strong> Para registrar cuándo se hacen las acciones</li>
+            <li><strong>Botones de acción:</strong> Agregar elementos, exportar, etc.</li>
+        </ul>
+    </div>
+
+    <!-- CAPÍTULO 3 -->
+    <div class="chapter">
+        <h2>3. 🛒 Cómo Registrar Una Venta (POS)</h2>
+        
+        <p>El Punto de Venta es donde registras cada venta que haces. Es lo más importante de la aplicación.</p>
+
+        <h3>Paso 1: Accede a Punto de Venta</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="menu">🛒 Punto de Venta</span> en el menú izquierdo</li>
+                <li>Verás dos columnas: 
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Izquierda (Productos):</strong> Listado de productos disponibles</li>
+                        <li><strong>Derecha (Carrito):</strong> Productos que vas a vender</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <h3>Paso 2: Busca un Producto</h3>
+        <div class="step">
+            <ol>
+                <li>En la parte superior izquierda, verás una caja de búsqueda <code>🔍 Buscar producto...</code></li>
+                <li>Escribe el nombre del producto (ej: "Jamón", "Arroz", "Cuaderno")</li>
+                <li>La lista se filtra automáticamente mientras escribes</li>
+            </ol>
+            <div class="tip">
+                <strong>💡 Alternativa:</strong> También puedes filtrar por categoría usando los botones:
+                <ul>
+                    <li><span class="category cat-charcuteria">🥓 Charcutería</span></li>
+                    <li><span class="category cat-viveres">🌾 Víveres</span></li>
+                    <li><span class="category cat-papeleria">📝 Papelería</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Paso 3: Agrega Productos al Carrito</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en el producto que quieres vender</li>
+                <li>El producto aparece automáticamente en el carrito (lado derecho)</li>
+                <li>Repite para todos los productos que va a comprar el cliente</li>
+            </ol>
+            <p><strong>Editar cantidades:</strong></p>
+            <ul>
+                <li>En el carrito, verás un campo con el número de unidades (ej: 1, 2, 3...)</li>
+                <li>Haz clic para editar la cantidad que quieras vender</li>
+                <li>El total se recalcula automáticamente</li>
+            </ul>
+        </div>
+
+        <h3>Paso 4: Revisa el Carrito</h3>
+        <div class="step">
+            <p>En la derecha, verás:</p>
+            <ul>
+                <li>Listado de cada producto agregado</li>
+                <li>Precio unitario × Cantidad = Subtotal de ese producto</li>
+                <li><strong>TOTAL al final:</strong> Lo que el cliente debe pagar</li>
+            </ul>
+        </div>
+
+        <h3>Paso 5: Selecciona Método de Pago</h3>
+        <div class="step">
+            <p>Bajo el carrito, verás un menú desplegable "Método de Pago". Elige uno:</p>
+            <ul>
+                <li>💵 <strong>Efectivo:</strong> El cliente paga en dinero</li>
+                <li>💳 <strong>Tarjeta:</strong> El cliente paga con tarjeta de crédito/débito</li>
+                <li>🔄 <strong>Mixto:</strong> Combinación de efectivo y tarjeta</li>
+            </ul>
+        </div>
+
+        <h3>Paso 6: Completa la Venta</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en el botón grande verde <span class="button" style="background: #4CAF50;">✓ Completar Venta</span></li>
+                <li>Se abrirá un recibo digital que puedes imprimir o enviar</li>
+                <li>El carrito se vaciará automáticamente para la siguiente venta</li>
+                <li>Verás una notificación verde: <strong>"¡Venta completada correctamente!"</strong></li>
+            </ol>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Consejos de velocidad:</strong>
+            <ul>
+                <li>Aprende los primeros 3-4 caracteres de tus productos más vendidos para búsqueda rápida</li>
+                <li>Si tienes mucho tráfico, considera usar un lector de códigos de barras (compatible)</li>
+                <li>Registra la venta apenas el cliente pague, para no olvidar</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 4 -->
+    <div class="chapter">
+        <h2>4. 📦 Gestionar Inventario (Solo Admin)</h2>
+        
+        <p>El inventario es la lista de todos tus productos. Aquí agregas nuevos productos y 
+        monitoreas el stock disponible.</p>
+
+        <h3>Ver Inventario Actual</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="menu">📦 Inventario</span> en el menú</li>
+                <li>Verás una tabla con todos tus productos</li>
+            </ol>
+            <p><strong>Columnas que verás:</strong></p>
+            <table>
+                <tr>
+                    <th>Columna</th>
+                    <th>Qué significa</th>
+                </tr>
+                <tr>
+                    <td>Producto</td>
+                    <td>Nombre del artículo</td>
+                </tr>
+                <tr>
+                    <td>Categoría</td>
+                    <td>A qué sección pertenece (Charcutería, Víveres, Papelería)</td>
+                </tr>
+                <tr>
+                    <td>Stock</td>
+                    <td>Cuántas unidades disponibles tienes ahora</td>
+                </tr>
+                <tr>
+                    <td>Precio</td>
+                    <td>Lo que cuesta al cliente</td>
+                </tr>
+                <tr>
+                    <td>Costo</td>
+                    <td>Lo que te costó comprarlo</td>
+                </tr>
+                <tr>
+                    <td>Ganancia</td>
+                    <td>Lo que ganas por producto (Precio - Costo)</td>
+                </tr>
+                <tr>
+                    <td>Vencimiento</td>
+                    <td>Fecha de expiración (importante para charcutería)</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Agregar un Nuevo Producto</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en el botón azul <span class="button">+ Agregar Producto</span></li>
+                <li>Se abrirá un formulario</li>
+                <li>Completa los campos:
+                    <ul>
+                        <li><strong>Nombre:</strong> Ej: "Jamón Serrano", "Aceite Vegetal 1L"</li>
+                        <li><strong>Categoría:</strong> Elige entre Charcutería, Víveres o Papelería</li>
+                        <li><strong>Precio de Venta:</strong> Lo que cobras al cliente</li>
+                        <li><strong>Costo:</strong> Lo que te costó (importante para ganancias)</li>
+                        <li><strong>Cantidad:</strong> Cuántas unidades tienes ahora</li>
+                        <li><strong>Fecha de Vencimiento:</strong> Solo para productos perecederos</li>
+                    </ul>
+                </li>
+                <li>Haz clic en <span class="button">Agregar Producto</span></li>
+                <li>El producto aparecerá en la tabla abajo</li>
+            </ol>
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> Registra la fecha de vencimiento para la charcutería. 
+                La app te alertará cuando se acerque la fecha de expiración.
+            </div>
+        </div>
+
+        <h3>Alertas Importantes</h3>
+        <div class="warning">
+            <strong>🔴 Stock Bajo:</strong> Si un producto tiene 20 o menos unidades, aparecerá 
+            en rojo en la tabla del Dashboard. Es hora de reabastecer.
+        </div>
+        <div class="warning">
+            <strong>🔴 Productos Vencidos:</strong> Si hay un producto que se vence pronto, 
+            aparecerá con fondo rojo en el Inventario. ¡Vende o descarta antes!
+        </div>
+
+        <h3>Eliminar un Producto</h3>
+        <div class="step">
+            <ol>
+                <li>En la tabla de Inventario, ve a la fila del producto que quieres eliminar</li>
+                <li>Haz clic en el botón rojo <span class="button" style="background: #ff6b6b;">Eliminar</span></li>
+                <li>El producto desaparece de la lista</li>
+            </ol>
+            <div class="warning">
+                <strong>⚠️ Cuidado:</strong> No puedes recuperar un producto eliminado. 
+                Si fue un error, tendrás que agregarlo de nuevo.
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 5 -->
+    <div class="chapter">
+        <h2>5. 📈 Ver Reportes y Estadísticas</h2>
+        
+        <p>Los reportes te muestran cómo le va a tu negocio: cuánto vendiste, cuánto ganaste, 
+        qué categoría es más rentable, etc.</p>
+
+        <h3>Acceder a Reportes</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="menu">📈 Reportes</span> en el menú izquierdo</li>
+                <li>Verás un panel con números clave de tu negocio</li>
+            </ol>
+        </div>
+
+        <h3>Tarjetas de Información</h3>
+        <p>En la parte superior, verás 4 tarjetas grandes:</p>
+        <table>
+            <tr>
+                <th>Tarjeta</th>
+                <th>Qué te dice</th>
+                <th>Por qué importa</th>
+            </tr>
+            <tr>
+                <td>💰 Venta Total</td>
+                <td>Dinero que has ingresado en total</td>
+                <td>Saber si creciste respecto a meses anteriores</td>
+            </tr>
+            <tr>
+                <td>📊 Ganancia Potencial</td>
+                <td>Lo que podrías ganar con el inventario actual</td>
+                <td>Saber cuál es tu capacidad de ganancia futura</td>
+            </tr>
+            <tr>
+                <td><span class="category cat-charcuteria">🥓 Charcutería</span></td>
+                <td>Ventas de la sección de charcutería</td>
+                <td>Saber qué categoría vende más</td>
+            </tr>
+            <tr>
+                <td><span class="category cat-viveres">🌾 Víveres</span></td>
+                <td>Ventas de la sección de víveres</td>
+                <td>Identificar productos estrella</td>
+            </tr>
+        </table>
+
+        <h3>Historial de Ventas</h3>
+        <div class="step">
+            <p>Bajo las tarjetas, verás una tabla "Últimas Ventas" que lista cada transacción:</p>
+            <ul>
+                <li><strong>Fecha:</strong> Cuándo fue la venta</li>
+                <li><strong>Items:</strong> Cuántos productos diferentes se vendieron</li>
+                <li><strong>Total:</strong> Cuánto dinero ingresó</li>
+                <li><strong>Pago:</strong> Efectivo, tarjeta o mixto</li>
+                <li><strong>Usuario:</strong> Quién registró la venta</li>
+            </ul>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Análisis recomendado (diario):</strong>
+            <ul>
+                <li>Suma mental de venta total del día</li>
+                <li>Identifica el producto más vendido</li>
+                <li>Observa si hay productos que no se venden</li>
+                <li>Nota si hay muchas devoluciones o cambios</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 6 -->
+    <div class="chapter">
+        <h2>6. 👥 Gestionar Clientes (Solo Admin)</h2>
+        
+        <p>Registra clientes, especialmente aquellos que compran a crédito (fiado).</p>
+
+        <h3>Ver Clientes</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="menu">👥 Clientes</span></li>
+                <li>Verás una tabla con todos los clientes registrados</li>
+            </ol>
+        </div>
+
+        <h3>Agregar un Nuevo Cliente</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="button">+ Agregar Cliente</span></li>
+                <li>Se abrirá un formulario con campos:
+                    <ul>
+                        <li><strong>Nombre:</strong> Nombre completo del cliente</li>
+                        <li><strong>Teléfono:</strong> Su número de contacto</li>
+                        <li><strong>Deuda Actual:</strong> Cuánto le debe en ese momento (0 si no debe nada)</li>
+                    </ul>
+                </li>
+                <li>Haz clic en <span class="button">Agregar</span></li>
+            </ol>
+        </div>
+
+        <h3>Monitorear Deudas</h3>
+        <p>En la tabla de clientes:</p>
+        <ul>
+            <li>Si dice <strong style="color: #4CAF50;">Pagado</strong> en la columna "Deuda" → cliente sin deuda</li>
+            <li>Si dice <strong style="color: #ff6b6b;">Bs 50,000</strong> → cliente debe esa cantidad</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Consejo:</strong> Actualiza la deuda cuando el cliente pague un abono. 
+            Por ahora tienes que editarla manualmente desde aquí.
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 7 -->
+    <div class="chapter">
+        <h2>7. 👔 Administración de Empleados (Solo Admin)</h2>
+        
+        <p>Registra a tus empleados y asigna permisos (quién puede ver qué).</p>
+
+        <h3>Ver Empleados</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="menu">👔 Empleados</span></li>
+                <li>Verás lista de todos los empleados</li>
+            </ol>
+        </div>
+
+        <h3>Agregar un Nuevo Empleado</h3>
+        <div class="step">
+            <ol>
+                <li>Haz clic en <span class="button">+ Agregar Empleado</span></li>
+                <li>Completa los campos:
+                    <ul>
+                        <li><strong>Nombre:</strong> Nombre del empleado</li>
+                        <li><strong>Usuario:</strong> Nombre de usuario para login (ej: "juan", "maria")</li>
+                        <li><strong>Rol:</strong> Elige "Empleado" o "Administrador"
+                            <ul style="margin-top: 10px;">
+                                <li><strong>Empleado:</strong> Solo puede usar POS y ver reportes</li>
+                                <li><strong>Administrador:</strong> Acceso total a todo</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Haz clic en <span class="button">Agregar</span></li>
+            </ol>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Recomendación:</strong> 
+            <ul>
+                <li>Registra cada empleado con su nombre real</li>
+                <li>El usuario debe ser fácil de recordar (nombre o nickname)</li>
+                <li>Solo el dueño debería ser Admin. Los empleados deben ser "Empleado"</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 8 - FAQ -->
+    <div class="chapter">
+        <h2>8. ❓ Preguntas Frecuentes (FAQ)</h2>
+
+        <div class="faq">
+            <div class="faq-q">¿Qué pasa si me equivoco en una venta?</div>
+            <div class="faq-a">
+                En la versión actual, no puedes deshacer. Por eso es importante verificar el carrito 
+                antes de "Completar Venta". En futuras versiones habrá un botón "Deshacer".
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Los datos se guardan si cierro la aplicación?</div>
+            <div class="faq-a">
+                No en esta versión inicial. Los datos se pierden al cerrar el navegador. 
+                En versión mejorada, todo se guardará automáticamente en la nube.
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Puedo usar esto en mi celular?</div>
+            <div class="faq-a">
+                Sí, perfectamente. Abre el archivo HTML en un navegador desde tu celular y funciona 
+                igual que en computadora. Puedes añadirlo a la pantalla de inicio para acceso rápido.
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Qué pasa si se va la electricidad o internet?</div>
+            <div class="faq-a">
+                La aplicación seguirá funcionando. No necesita internet para usar POS. Los datos se 
+                guardan localmente en tu dispositivo. Cuando vuelva internet, sincronizarán automáticamente.
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Puedo cambiar la contraseña?</div>
+            <div class="faq-a">
+                Actualmente no desde la app. Avísale al desarrollador para que la cambie en el código. 
+                En versión mejorada habrá opción para cambiar contraseña desde la aplicación.
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Cómo imprimo un recibo?</div>
+            <div class="faq-a">
+                Después de completar la venta, sale automáticamente. Presiona Ctrl+P (Windows) o Cmd+P (Mac) 
+                para abrir la ventana de impresión del navegador.
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Puedo usar esta app con múltiples tiendas?</div>
+            <div class="faq-a">
+                En versión actual, no. Cada instalación es para una tienda. En futuras versiones 
+                habrá soporte para múltiples sucursales.
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="faq-q">¿Qué tan segura es mi información?</div>
+            <div class="faq-a">
+                Los datos se guardan localmente en tu dispositivo (no en internet). Solo tú tienes acceso 
+                con tu usuario y contraseña. Si quieres datos en la nube, se puede agregar.
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 9 -->
+    <div class="chapter">
+        <h2>9. 🔧 Solución de Problemas</h2>
+
+        <h3>Problema: No puedo iniciar sesión</h3>
+        <div class="step">
+            <p><strong>Verificación:</strong></p>
+            <ul>
+                <li>¿Escribiste el usuario exactamente? (admin o empleado, minúsculas)</li>
+                <li>¿La contraseña es "123" sin espacios?</li>
+                <li>¿Presionaste Enter o hiciste clic en "Iniciar Sesión"?</li>
+                <li>¿Probaste en otro navegador? (Chrome, Firefox, Safari)</li>
+            </ul>
+        </div>
+
+        <h3>Problema: El carrito no se actualiza en POS</h3>
+        <div class="step">
+            <p><strong>Solución:</strong></p>
+            <ul>
+                <li>Recarga la página (F5)</li>
+                <li>Cierra el navegador y vuelve a abrir</li>
+                <li>Intenta en otro navegador</li>
+            </ul>
+        </div>
+
+        <h3>Problema: Perdí mis datos</h3>
+        <div class="step">
+            <p><strong>Causas comunes:</strong></p>
+            <ul>
+                <li>Limpiaste el caché/historial del navegador (los datos se guardaban ahí)</li>
+                <li>Usaste modo "Incógnito" (los datos no se guardan)</li>
+                <li>Reiniciaste el navegador sin guardar cambios</li>
+            </ul>
+            <p><strong>Prevención:</strong> En versión mejorada, los datos se guardarán automáticamente 
+            en un servidor seguro.</p>
+        </div>
+
+        <h3>Problema: La aplicación va lenta</h3>
+        <div class="step">
+            <p><strong>Soluciones:</strong></p>
+            <ul>
+                <li>Cierra otras pestañas del navegador</li>
+                <li>Reinicia tu dispositivo</li>
+                <li>Intenta en otro navegador</li>
+                <li>Si tienes muy muchos productos (>1000), considera archivar antiguos</li>
+            </ul>
+        </div>
+
+        <h3>Problema: Aparece un error rojo</h3>
+        <div class="step">
+            <p><strong>Qué hacer:</strong></p>
+            <ul>
+                <li>Lee el mensaje de error (te dice qué salió mal)</li>
+                <li>Haz clic en otra sección del menú</li>
+                <li>Intenta de nuevo</li>
+                <li>Si persiste, contacta al soporte técnico (desarrollo)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CIERRE -->
+    <div class="chapter" style="background: linear-gradient(135deg, #e3f2fd 0%, #f0f7fa 100%); border-left: 4px solid #2196F3;">
+        <h2>📞 ¿Preguntas o Problemas?</h2>
+        <p style="font-size: 16px; line-height: 2;">
+            Si encuentras un problema o algo no funciona como se describe, 
+            <strong>contacta al desarrollador Fher.</strong>
+        </p>
+        <p style="color: #666;">
+            Este manual es para la <strong>Versión 1.0</strong> de la aplicación (Junio 2026).<br>
+            Nuevas versiones tendrán más características y mejoras.
+        </p>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
+    
+    <p style="text-align: center; color: #999; font-size: 13px;">
+        Manual de Usuario - Sistema de Administración para Negocio Mixto<br>
+        Versión 1.0 | Junio 2026<br>
+        Todos los derechos reservados
+    </p>
+</body>
+</html>

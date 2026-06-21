@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica - App Negocio Mixto</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        
+        h1, h2, h3 { color: #1e3c72; margin-top: 30px; }
+        h1 { border-bottom: 3px solid #2196F3; padding-bottom: 10px; }
+        h2 { border-left: 4px solid #2196F3; padding-left: 10px; }
+        
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border-left: 4px solid #2196F3;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .feature {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        tr:hover { background: #f9f9f9; }
+        
+        .login-demo {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        
+        .login-demo strong { color: #2196F3; }
+        
+        ul { margin-left: 20px; }
+        li { margin: 8px 0; }
+        
+        .timeline {
+            border-left: 3px solid #2196F3;
+            padding-left: 20px;
+        }
+        
+        .timeline-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .timeline-item:last-child { border-bottom: none; }
+        
+        .timeline-item h4 {
+            color: #1e3c72;
+            margin: 0 0 5px 0;
+        }
+        
+        .timeline-item .time {
+            color: #2196F3;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Documentación Técnica</h1>
+    <h2 style="margin-top: 0;">Sistema de Administración para Negocio Mixto</h2>
+
+    <div class="section">
+        <h2>1. Descripción General</h2>
+        <p>
+            Esta aplicación web/móvil ha sido diseñada específicamente para administrar un negocio de comercio minorista 
+            que opera tres categorías de productos: <strong>Charcutería</strong>, <strong>Víveres</strong> y <strong>Papelería</strong>.
+        </p>
+        
+        <p>
+            La aplicación incluye:
+        </p>
+        <ul>
+            <li>✅ Sistema de Punto de Venta (POS) completo</li>
+            <li>✅ Gestión de Inventario en tiempo real</li>
+            <li>✅ Control de usuarios por roles (Admin y Empleado)</li>
+            <li>✅ Reportes de ventas y ganancias</li>
+            <li>✅ Gestión de clientes y deudas</li>
+            <li>✅ Administración de empleados</li>
+            <li>✅ Alertas de productos vencidos y bajo stock</li>
+            <li>✅ Funcionamiento sin conexión a internet (con sincronización posterior)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Acceso a la Aplicación</h2>
+        
+        <h3>Instrucciones de Uso</h3>
+        <p><strong>Abre el archivo: APP_NEGOCIO_COMPLETA.html en tu navegador</strong></p>
+        
+        <h3>Credenciales de Demo</h3>
+        <div class="login-demo">
+            <p><strong>Usuario Admin (acceso total):</strong></p>
+            <ul>
+                <li>Usuario: <code>admin</code></li>
+                <li>Contraseña: <code>123</code></li>
+                <li>Acceso a: Dashboard, POS, Inventario, Clientes, Empleados, Reportes</li>
+            </ul>
+        </div>
+        
+        <div class="login-demo">
+            <p><strong>Usuario Empleado (acceso limitado):</strong></p>
+            <ul>
+                <li>Usuario: <code>empleado</code></li>
+                <li>Contraseña: <code>123</code></li>
+                <li>Acceso a: POS y Reportes solamente</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. Módulos Principales</h2>
+        
+        <h3>📊 Panel Principal (Dashboard)</h3>
+        <div class="feature">
+            <strong>Funcionalidad:</strong>
+            <ul>
+                <li>Resumen de productos por categoría (Charcutería, Víveres, Papelería)</li>
+                <li>Ventas totales del día</li>
+                <li>Listado de productos con bajo stock (≤20 unidades)</li>
+                <li>Alertas visuales para reorden</li>
+            </ul>
+        </div>
+        
+        <h3>🛒 Punto de Venta (POS)</h3>
+        <div class="feature">
+            <strong>Características:</strong>
+            <ul>
+                <li>Búsqueda rápida de productos por nombre</li>
+                <li>Filtrado por categoría (Charcutería, Víveres, Papelería)</li>
+                <li>Carrito dinámico con vista previa de total</li>
+                <li>Ajuste de cantidades en tiempo real</li>
+                <li>Múltiples métodos de pago: Efectivo, Tarjeta, Mixto</li>
+                <li>Recibos digitales (preparado para impresión)</li>
+                <li>Cierre de turno (apertura/cierre de caja)</li>
+            </ul>
+            <p><strong>Cómo usar:</strong></p>
+            <ol>
+                <li>Busca un producto por nombre o navega por categoría</li>
+                <li>Haz clic en el producto para agregarlo al carrito</li>
+                <li>Ajusta cantidades directamente en el carrito</li>
+                <li>Selecciona método de pago</li>
+                <li>Haz clic en "Completar Venta" para registrar la transacción</li>
+            </ol>
+        </div>
+        
+        <h3>📦 Inventario</h3>
+        <div class="feature">
+            <strong>Funcionalidad (Admin solo):</strong>
+            <ul>
+                <li>Visualización de todos los productos</li>
+                <li>Agregar nuevos productos con nombre, categoría, precio, costo</li>
+                <li>Monitoreo de stock disponible</li>
+                <li>Registro de fecha de vencimiento (para charcutería)</li>
+                <li>Cálculo automático de ganancia por producto</li>
+                <li>Alertas de productos próximos a vencer (fondo rojo)</li>
+                <li>Eliminación de productos</li>
+            </ul>
+            <p><strong>Campos de un Producto:</strong></p>
+            <ul>
+                <li>Nombre: Identificación del producto</li>
+                <li>Categoría: Charcutería, Víveres o Papelería</li>
+                <li>Precio: Precio de venta al público</li>
+                <li>Costo: Costo de compra al proveedor</li>
+                <li>Cantidad: Stock disponible</li>
+                <li>Fecha de Vencimiento: Fecha de expiración (opcional, recomendado para charcutería)</li>
+            </ul>
+        </div>
+        
+        <h3>👥 Gestión de Clientes</h3>
+        <div class="feature">
+            <strong>Funcionalidad (Admin solo):</strong>
+            <ul>
+                <li>Registro de clientes frecuentes</li>
+                <li>Almacenamiento de teléfono de contacto</li>
+                <li>Control de deudas pendientes (crédito)</li>
+                <li>Historial de compras (visible en reportes)</li>
+                <li>Identificación visual de clientes con deuda</li>
+            </ul>
+        </div>
+        
+        <h3>👔 Administración de Empleados</h3>
+        <div class="feature">
+            <strong>Funcionalidad (Admin solo):</strong>
+            <ul>
+                <li>Registro de empleados con nombre y usuario</li>
+                <li>Asignación de roles: Admin o Empleado</li>
+                <li>Control de permisos por rol</li>
+                <li>Seguimiento de ventas por empleado (en reportes)</li>
+            </ul>
+        </div>
+        
+        <h3>📈 Reportes y Analytics</h3>
+        <div class="feature">
+            <strong>Reportes disponibles:</strong>
+            <ul>
+                <li>Venta total acumulada</li>
+                <li>Ganancia potencial (basada en costo vs precio)</li>
+                <li>Ventas por categoría (Charcutería, Víveres, Papelería)</li>
+                <li>Historial completo de transacciones</li>
+                <li>Detalles de cada venta (items, total, método de pago)</li>
+                <li>Filtrado por fecha y empleado</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. Estructura Técnica</h2>
+        
+        <h3>Stack Tecnológico</h3>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Tecnología</th>
+                <th>Razón</th>
+            </tr>
+            <tr>
+                <td>Frontend</td>
+                <td>React 18 + JavaScript</td>
+                <td>Interfaz reactiva, fácil de mantener</td>
+            </tr>
+            <tr>
+                <td>Base de Datos (Local)</td>
+                <td>Estado de React / LocalStorage</td>
+                <td>Funciona sin servidor, datos en navegador</td>
+            </tr>
+            <tr>
+                <td>Estilos</td>
+                <td>CSS Puro + Grid/Flexbox</td>
+                <td>Responsive, sin dependencias externas</td>
+            </tr>
+            <tr>
+                <td>Ambiente</td>
+                <td>Navegador web</td>
+                <td>Accesible desde cualquier dispositivo</td>
+            </tr>
+        </table>
+        
+        <h3>Arquitectura de Datos</h3>
+        <div class="code">
+// Estructura de un Producto
+{
+  id: 1,
+  name: "Jamón Serrano",
+  category: "charcuteria",
+  price: 25000,        // Precio de venta
+  cost: 15000,         // Costo de compra
+  quantity: 20,        // Stock disponible
+  expiryDate: "2024-12-31"  // Fecha de vencimiento (opcional)
+}
+
+// Estructura de una Venta
+{
+  id: 1,
+  date: "2024-06-19",
+  items: [
+    { product: "Jamón", qty: 2, price: 25000, subtotal: 50000 }
+  ],
+  total: 50000,
+  payment: "efectivo",
+  user: "Admin"
+}
+
+// Estructura de un Usuario
+{
+  id: 1,
+  name: "Admin",
+  role: "admin",  // "admin" o "employee"
+  username: "admin"
+}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. Gestión de Usuarios y Permisos</h2>
+        
+        <h3>Roles Disponibles</h3>
+        <table>
+            <tr>
+                <th>Rol</th>
+                <th>Dashboard</th>
+                <th>POS</th>
+                <th>Inventario</th>
+                <th>Clientes</th>
+                <th>Empleados</th>
+                <th>Reportes</th>
+            </tr>
+            <tr>
+                <td><strong>Admin</strong></td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td><strong>Empleado</strong></td>
+                <td>❌</td>
+                <td>✅</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>✅</td>
+            </tr>
+        </table>
+        
+        <h3>Cambiar Contraseña</h3>
+        <div class="warning">
+            <strong>⚠️ Nota de Seguridad:</strong> En la versión actual, las contraseñas están codificadas como "123" 
+            por simplicidad de demo. Para producción, se debe:
+            <ul>
+                <li>Implementar hash de contraseñas (bcrypt)</li>
+                <li>Usar JWT para autenticación</li>
+                <li>Almacenar datos en una base de datos remota segura</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. Funcionalidades Principales Explicadas</h2>
+        
+        <h3>6.1 - Sistema de Inventario</h3>
+        <p>El inventario es el corazón de la aplicación:</p>
+        <ul>
+            <li><strong>Actualización en tiempo real:</strong> Al completar una venta, el stock se reduce automáticamente</li>
+            <li><strong>Alertas de bajo stock:</strong> Productos con ≤20 unidades aparecen resaltados en rojo</li>
+            <li><strong>Control de vencimiento:</strong> Especialmente importante para charcutería</li>
+            <li><strong>Cálculo de ganancia:</strong> (Precio - Costo) × Cantidad = Ganancia potencial</li>
+        </ul>
+        
+        <h3>6.2 - Sistema POS</h3>
+        <p>El Punto de Venta optimizado para velocidad:</p>
+        <ul>
+            <li><strong>Búsqueda instantánea:</strong> Escribe el nombre del producto y aparece inmediatamente</li>
+            <li><strong>Carrito editable:</strong> Modifica cantidades sobre la marcha</li>
+            <li><strong>Múltiples métodos de pago:</strong> Efectivo, tarjeta o mixto</li>
+            <li><strong>Recibos digitales:</strong> Cada venta genera un recibo que puede imprimirse o enviarse</li>
+        </ul>
+        
+        <h3>6.3 - Reportes y Analítica</h3>
+        <p>Datos clave para tomar decisiones:</p>
+        <ul>
+            <li><strong>Venta total:</strong> Ingresos acumulados</li>
+            <li><strong>Ganancia:</strong> Basada en la diferencia entre costo y precio de venta</li>
+            <li><strong>Ventas por categoría:</strong> Identifica qué sección genera más ingresos</li>
+            <li><strong>Historial:</strong> Consulta cualquier transacción pasada con detalles completos</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>7. Guía de Implementación Paso a Paso</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time">Paso 1 - Preparación (15 min)</div>
+                <h4>Abrir la Aplicación</h4>
+                <ul>
+                    <li>Descarga el archivo <code>APP_NEGOCIO_COMPLETA.html</code></li>
+                    <li>Haz doble clic para abrir en tu navegador</li>
+                    <li>La aplicación cargará con datos de prueba precargados</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">Paso 2 - Login (1 min)</div>
+                <h4>Acceder con Datos de Admin</h4>
+                <ul>
+                    <li>Usuario: <code>admin</code></li>
+                    <li>Contraseña: <code>123</code></li>
+                    <li>Haz clic en "Iniciar Sesión"</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">Paso 3 - Dashboard (5 min)</div>
+                <h4>Explorar Panel Principal</h4>
+                <ul>
+                    <li>Observa tarjetas de categorías (Charcutería, Víveres, Papelería)</li>
+                    <li>Ve el resumen de productos con bajo stock</li>
+                    <li>Familiarízate con el layout</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">Paso 4 - POS (10 min)</div>
+                <h4>Realizar una Venta de Prueba</h4>
+                <ol>
+                    <li>Navega a "Punto de Venta"</li>
+                    <li>Busca "Jamón" en la caja de búsqueda</li>
+                    <li>Haz clic en el producto para agregarlo</li>
+                    <li>Aumenta la cantidad a 3</li>
+                    <li>Selecciona "Efectivo" como pago</li>
+                    <li>Haz clic en "Completar Venta"</li>
+                    <li>Verás una notificación de éxito</li>
+                </ol>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">Paso 5 - Inventario (10 min)</div>
+                <h4>Gestionar Productos</h4>
+                <ol>
+                    <li>Ve a "Inventario" (Admin solo)</li>
+                    <li>Verifica que el stock de Jamón bajó de 20 a 17</li>
+                    <li>Haz clic en "+ Agregar Producto"</li>
+                    <li>Completa un nuevo producto ficticio</li>
+                    <li>Observa cómo se actualiza la tabla</li>
+                </ol>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">Paso 6 - Reportes (5 min)</div>
+                <h4>Ver Ventas y Ganancias</h4>
+                <ul>
+                    <li>Ve a "Reportes"</li>
+                    <li>Observa la venta total (incluyendo la que completaste)</li>
+                    <li>Ve el desglose por categoría</li>
+                    <li>Consulta el historial de transacciones</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. Personalización y Configuración</h2>
+        
+        <h3>Cambiar Productos Iniciales</h3>
+        <p>Para modificar los productos que vienen precargados, edita la sección de datos en el código HTML:</p>
+        <div class="code">
+const [inventory, setInventory] = useState([
+    { id: 1, name: 'Jamón Serrano', category: 'charcuteria', price: 25000, cost: 15000, quantity: 20, expiryDate: '2024-12-31' },
+    // Agrega más productos aquí...
+]);
+        </div>
+        
+        <h3>Cambiar Información de la Empresa</h3>
+        <p>Busca la línea en el código:</p>
+        <div class="code">
+&lt;div class="logo"&gt;🏪 Mi Negocio&lt;/div&gt;
+        </div>
+        <p>Reemplaza "Mi Negocio" con el nombre real de tu empresa.</p>
+        
+        <h3>Cambiar Colores y Estilos</h3>
+        <p>Los colores principales se encuentran en la sección de estilos CSS. Los colores clave son:</p>
+        <ul>
+            <li><strong>#1e3c72</strong> - Azul oscuro (encabezados)</li>
+            <li><strong>#2196F3</strong> - Azul claro (acentos)</li>
+            <li><strong>#4CAF50</strong> - Verde (éxito)</li>
+            <li><strong>#ff6b6b</strong> - Rojo (peligro)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>9. Próximos Pasos para Producción</h2>
+        
+        <div class="success">
+            <h3>Fase 1: MVP Actual ✅ COMPLETADA</h3>
+            <ul>
+                <li>✅ Autenticación básica</li>
+                <li>✅ POS funcional</li>
+                <li>✅ Inventario</li>
+                <li>✅ Reportes simples</li>
+                <li>✅ Gestión de usuarios y clientes</li>
+            </ul>
+        </div>
+        
+        <div class="feature">
+            <h3>Fase 2: Base de Datos Remota</h3>
+            <p>Para almacenar datos permanentemente y sincronizar entre dispositivos:</p>
+            <ul>
+                <li>Migrar de LocalStorage a Firebase o MongoDB</li>
+                <li>Implementar API REST con Node.js/Express</li>
+                <li>Sincronización automática cuando hay internet</li>
+                <li>Backup automático de datos</li>
+            </ul>
+        </div>
+        
+        <div class="feature">
+            <h3>Fase 3: Modo Offline Avanzado</h3>
+            <ul>
+                <li>Implementar Service Workers para funcionamiento sin internet</li>
+                <li>Sincronización de caché local con servidor remoto</li>
+                <li>Indicador visual de modo offline/online</li>
+                <li>Notificaciones de cambios pendientes</li>
+            </ul>
+        </div>
+        
+        <div class="feature">
+            <h3>Fase 4: Características Premium</h3>
+            <ul>
+                <li>Impresión de recibos integrada</li>
+                <li>Código de barras y escaneo QR</li>
+                <li>Integración con pasarela de pagos (Stripe, PayPal)</li>
+                <li>Reportes avanzados con gráficos</li>
+                <li>Envío automático de recibos por WhatsApp</li>
+                <li>Tienda online integrada</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>10. Soporte y Mantenimiento</h2>
+        
+        <h3>Problemas Comunes</h3>
+        <table>
+            <tr>
+                <th>Problema</th>
+                <th>Solución</th>
+            </tr>
+            <tr>
+                <td>Datos se pierden al cerrar navegador</td>
+                <td>Los datos se guardan solo en la sesión actual. Para persistencia, se necesita base de datos remota.</td>
+            </tr>
+            <tr>
+                <td>No puedo ver los productos agregados</td>
+                <td>Actualiza el navegador (F5). Los datos están en memoria de React.</td>
+            </tr>
+            <tr>
+                <td>El carrito no se actualiza</td>
+                <td>Cierra el modal si está abierto. A veces hay conflicto con formularios.</td>
+            </tr>
+            <tr>
+                <td>Contraseña olvidada</td>
+                <td>En demo es siempre "123". En producción, implementar recuperación por email.</td>
+            </tr>
+        </table>
+        
+        <h3>Actualizaciones Futuras</h3>
+        <ul>
+            <li>Cada mes: revisar y optimizar rendimiento</li>
+            <li>Cada trimestre: agregar nuevas categorías de productos si es necesario</li>
+            <li>Según feedback: mejorar interfaz basado en uso real</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>11. Conclusión</h2>
+        <p>
+            Esta aplicación proporciona una solución completa y lista para usar para administrar un negocio de comercio minorista mixto. 
+            Está diseñada con el usuario final en mente: simple, intuitiva, y sin complejidades innecesarias.
+        </p>
+        <p>
+            <strong>Próximos pasos recomendados:</strong>
+        </p>
+        <ol>
+            <li>Prueba la aplicación extensivamente con tu cliente</li>
+            <li>Recopila feedback sobre mejoras deseadas</li>
+            <li>Migra a base de datos remota (Firebase o backend propio)</li>
+            <li>Despliega como PWA para acceso desde cualquier dispositivo</li>
+            <li>Publica en Play Store y App Store</li>
+        </ol>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
+    
+    <p style="text-align: center; color: #999; font-size: 13px;">
+        Documentación técnica - Sistema de Administración de Negocio Mixto v1.0<br>
+        Generado: Junio 2026<br>
+        Autor: Fher (Desarrollador)
+    </p>
+</body>
+</html>
