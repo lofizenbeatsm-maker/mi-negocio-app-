@@ -3535,6 +3535,12 @@
 
                     </div>
 
+                    <div class="nav-item" onclick="switchSection('business-profile', event)">
+
+                        <span class="nav-icon">🏪</span> Perfil de Negocio
+
+                    </div>
+
                 </div>
 
 
@@ -3979,6 +3985,62 @@
 
 
 
+                <!-- BUSINESS PROFILE -->
+
+                <div id="business-profile" class="content-section">
+
+                    <div class="section-header">
+
+                        <h2>🏪 Perfil de Negocio</h2>
+
+                    </div>
+
+                    <div class="card" style="max-width: 600px; margin: 20px auto; padding: 24px;">
+
+                        <form id="businessProfileForm" onsubmit="saveBusinessProfile(event)">
+
+                            <div class="form-group" style="margin-bottom: 18px;">
+
+                                <label for="profileName">Nombre del Negocio (Bodega / Supermercado)</label>
+
+                                <input type="text" id="profileName" class="form-input" required placeholder="Ej: Mi Súper Bodega">
+
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 18px;">
+
+                                <label for="profileRif">Datos Fiscales (RIF / NIT / Identificación)</label>
+
+                                <input type="text" id="profileRif" class="form-input" required placeholder="Ej: J-12345678-9">
+
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 18px;">
+
+                                <label for="profilePhone">Número de Teléfono</label>
+
+                                <input type="text" id="profilePhone" class="form-input" required placeholder="Ej: 0412-1234567">
+
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 24px;">
+
+                                <label for="profileAddress">Dirección Comercial</label>
+
+                                <input type="text" id="profileAddress" class="form-input" required placeholder="Ej: Av. Bolívar, Local 12, Caracas">
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">💾 Guardar Cambios</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+
                 <!-- CUSTOMERS -->
 
                 <div id="customers" class="content-section">
@@ -4316,6 +4378,20 @@
 
 
 
+        let businessProfile = {
+
+            name: 'Mi Negocio',
+
+            phone: '0412-0000000',
+
+            address: 'Dirección de la tienda',
+
+            rif: 'J-12345678-9'
+
+        };
+
+
+
         let inventory = [
 
             // CHARCUTERÍA
@@ -4418,7 +4494,7 @@
 
             try {
 
-                const data = { inventory, sales, customers, employees, exchangeRates };
+                const data = { inventory, sales, customers, employees, exchangeRates, businessProfile };
 
                 localStorage.setItem('miNegocioData', JSON.stringify(data));
 
@@ -4477,6 +4553,12 @@
                     if (data.exchangeRates) {
 
                         exchangeRates = data.exchangeRates;
+
+                    }
+
+                    if (data.businessProfile) {
+
+                        businessProfile = data.businessProfile;
 
                     }
 
@@ -4576,6 +4658,8 @@
 
             loadData();
 
+            applyBusinessProfile();
+
             populateEmployeeSelect();
 
             updateDateTime();
@@ -4654,6 +4738,8 @@
                     updateEmployeeDashboard();
 
                 } else {
+
+                    document.getElementById('adminNav').style.display = 'block';
 
                     document.getElementById('adminDashboard').style.display = 'block';
 
@@ -4739,6 +4825,8 @@
 
             const titles = {
 
+                'business-profile': 'Perfil de Negocio',
+
                 dashboard: 'Panel Principal',
 
                 pos: 'Punto de Venta',
@@ -4762,6 +4850,8 @@
             if (section === 'mysales') renderMySalesTable();
 
             if (section === 'sales') renderSalesTable();
+
+            if (section === 'business-profile') loadBusinessProfileForm();
 
         }
 
@@ -5563,13 +5653,13 @@
 
                     <div class="receipt-header">
 
-                        <h2>🏪 Mi Negocio</h2>
+                        <h2>🏪 ${businessProfile.name || 'Mi Negocio'}</h2>
 
-                        <p style="margin: 2px 0;">RIF: J-12345678-9</p>
+                        <p style="margin: 2px 0;">${businessProfile.rif ? 'RIF: ' + businessProfile.rif : ''}</p>
 
-                        <p style="margin: 2px 0;">Dirección de la tienda</p>
+                        <p style="margin: 2px 0;">${businessProfile.address || ''}</p>
 
-                        <p style="margin: 2px 0;">Tel: 0412-0000000</p>
+                        <p style="margin: 2px 0;">${businessProfile.phone ? 'Tel: ' + businessProfile.phone : ''}</p>
 
                         <div class="receipt-divider"></div>
 
@@ -5682,7 +5772,7 @@
         changeText = " Efectivo: " + sym + " " + Math.round(s.cashReceived) + "\n Vuelto: " + sym + " " + Math.round(s.change);
     }
     const customerText = s.customerName ? " Cliente: " + s.customerName + "\n" : "";
-    const message = " *Mi Negocio*\n\n" +
+    const message = " *" + (businessProfile.name || "Mi Negocio") + "*\n\n" +
         " Recibo #" + s.id + "\n" +
         " " + s.date + " - " + s.time + "\n" +
         " Atendido por: " + s.employeeName + "\n" +
@@ -5697,7 +5787,7 @@
         (changeText ? changeText + "\n" : "") +
         "─────────────────\n" +
         " ¡Gracias por su compra!\n\n" +
-        " Enviado desde Mi Negocio";
+        " Enviado desde " + (businessProfile.name || "Mi Negocio");
     const url = "https://wa.me/?text=" + encodeURIComponent(message);
     window.open(url, "_blank");
 }
@@ -5735,7 +5825,7 @@
 
             var win = window.open('', '_blank', 'width=900,height=700');
 
-            win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Inventario - Mi Negocio</title>')
+            win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Inventario - ' + (businessProfile.name || 'Mi Negocio') + '</title>')
 
             win.document.write('<style>')
 
@@ -5759,7 +5849,7 @@
 
             win.document.write('</style></head><body>')
 
-            win.document.write('<h1>🏪 Mi Negocio — Inventario</h1>')
+            win.document.write('<h1>🏪 ' + (businessProfile.name || 'Mi Negocio') + ' — Inventario</h1>')
 
             win.document.write('<div class="subtitle">Generado: ' + new Date().toLocaleString('es-VE') + ' | Total productos: ' + inventory.length + '</div>')
 
@@ -5769,7 +5859,7 @@
 
             win.document.write('</tr></thead><tbody>' + rows + '</tbody></table>')
 
-            win.document.write('<div class="footer">📦 Generado desde Mi Negocio — Sistema de Administración</div>')
+            win.document.write('<div class="footer">📦 Generado desde ' + (businessProfile.name || 'Mi Negocio') + ' — Sistema de Administración</div>')
 
             win.document.write('<div class="no-print" style="text-align: center; margin-top: 20px;"><button onclick="window.print()" style="padding: 10px 24px; background: #6366f1; color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer;">🖨️ Imprimir</button></div>')
 
@@ -6521,7 +6611,7 @@
 
         function exportBackup() {
 
-            const data = { inventory, sales, customers, employees, exchangeRates, exportDate: new Date().toISOString() };
+            const data = { inventory, sales, customers, employees, exchangeRates, businessProfile, exportDate: new Date().toISOString() };
 
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
 
@@ -6577,7 +6667,11 @@
 
                         if (data.exchangeRates) exchangeRates = data.exchangeRates;
 
+                        if (data.businessProfile) businessProfile = data.businessProfile;
+
                         saveData();
+
+                        applyBusinessProfile();
 
                         updateDashboard(); renderProducts(); filterProducts(); renderInventoryTable();
 
@@ -6596,6 +6690,66 @@
             input.click();
 
         }
+
+
+        function applyBusinessProfile() {
+
+            document.title = (businessProfile.name || 'Mi Negocio') + ' - Sistema de Administración';
+
+            const loginHeader = document.querySelector('.login-form h1');
+
+            if (loginHeader) {
+
+                loginHeader.innerHTML = `🏪 ${businessProfile.name || 'Mi Negocio'}`;
+
+            }
+
+            const logoEl = document.querySelector('.logo');
+
+            if (logoEl) {
+
+                logoEl.innerHTML = `<div class="logo-icon">🏪</div> ${businessProfile.name || 'Mi Negocio'}`;
+
+            }
+
+        }
+
+
+
+        function loadBusinessProfileForm() {
+
+            document.getElementById('profileName').value = businessProfile.name || '';
+
+            document.getElementById('profileRif').value = businessProfile.rif || '';
+
+            document.getElementById('profilePhone').value = businessProfile.phone || '';
+
+            document.getElementById('profileAddress').value = businessProfile.address || '';
+
+        }
+
+
+
+        function saveBusinessProfile(event) {
+
+            event.preventDefault();
+
+            businessProfile.name = document.getElementById('profileName').value.trim();
+
+            businessProfile.rif = document.getElementById('profileRif').value.trim();
+
+            businessProfile.phone = document.getElementById('profilePhone').value.trim();
+
+            businessProfile.address = document.getElementById('profileAddress').value.trim();
+
+            saveData();
+
+            applyBusinessProfile();
+
+            showToast('✅ Perfil de negocio actualizado correctamente');
+
+        }
+
 
 
 // UTILITIES
