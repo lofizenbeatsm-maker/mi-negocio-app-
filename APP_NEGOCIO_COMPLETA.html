@@ -354,6 +354,22 @@
 
 
 
+        #inventoryTable table th, #inventoryTable table td {
+
+            padding: 8px 12px;
+
+        }
+
+
+
+        #inventoryTable table {
+
+            font-size: 12.5px;
+
+        }
+
+
+
         /* ============ LOGIN SCREEN ============ */
 
         .login-screen {
@@ -675,6 +691,50 @@
             background: var(--color-bg);
 
             border-color: var(--color-text-muted);
+
+        }
+
+
+
+        .btn-warning {
+
+            background: var(--color-warning);
+
+            color: white;
+
+        }
+
+
+
+        .btn-warning:hover {
+
+            background: #d97706;
+
+            box-shadow: var(--shadow-md);
+
+            transform: translateY(-1px);
+
+        }
+
+
+
+        .btn-info {
+
+            background: #0284c7;
+
+            color: white;
+
+        }
+
+
+
+        .btn-info:hover {
+
+            background: #0369a1;
+
+            box-shadow: var(--shadow-md);
+
+            transform: translateY(-1px);
 
         }
 
@@ -3865,11 +3925,23 @@
 
                             <button class="btn btn-success" onclick="exportInventoryCSV()">📄 Exportar CSV</button>
 
-                            <button class="btn btn-ghost" onclick="importInventoryCSV()">📥 Importar CSV</button>
+                            <button class="btn btn-warning" onclick="importInventoryCSV()">📥 Importar CSV</button>
 
-                            <button class="btn btn-ghost" onclick="printInventory()">🖨️ Imprimir</button>
+                            <button class="btn btn-info" onclick="printInventory()">🖨️ Imprimir</button>
 
                         </div>
+
+                    </div>
+
+                    <div class="category-filter" id="inventoryCategoryFilter" style="margin-top: 16px; margin-bottom: 4px;">
+
+                        <button class="cat-btn active" onclick="filterInventoryCategory('all')">Todos</button>
+
+                        <button class="cat-btn" onclick="filterInventoryCategory('charcuteria')">🥓 Charcutería</button>
+
+                        <button class="cat-btn" onclick="filterInventoryCategory('viveres')">🥦 Víveres</button>
+
+                        <button class="cat-btn" onclick="filterInventoryCategory('papeleria')">✏️ Papelería</button>
 
                     </div>
 
@@ -6453,17 +6525,65 @@
 
 
 
+        let currentInventoryCategory = 'all';
+
+
+
+        function filterInventoryCategory(category) {
+
+            currentInventoryCategory = category;
+
+            const filterDiv = document.getElementById('inventoryCategoryFilter');
+
+            if (filterDiv) {
+
+                filterDiv.querySelectorAll('.cat-btn').forEach(btn => {
+
+                    btn.classList.remove('active');
+
+                });
+
+                const indexMap = { all: 0, charcuteria: 1, viveres: 2, papeleria: 3 };
+
+                const btnIndex = indexMap[category];
+
+                const btns = filterDiv.querySelectorAll('.cat-btn');
+
+                if (btns[btnIndex]) {
+
+                    btns[btnIndex].classList.add('active');
+
+                }
+
+            }
+
+            renderInventoryTable();
+
+        }
+
+
+
         function renderInventoryTable() {
 
             let html = '<table><thead><tr><th>Producto</th><th>Categoría</th><th>Stock</th><th>🇻🇪 Bs</th><th>🇺🇸 USD</th><th>🇨🇴 COP</th><th>Acciones</th></tr></thead><tbody>';
 
-            inventory.forEach(p => {
+            const filteredInventory = currentInventoryCategory === 'all'
+
+                ? inventory
+
+                : inventory.filter(p => p.category === currentInventoryCategory);
+
+            const catLabels = { charcuteria: '🥓 Charcutería', viveres: '🥦 Víveres', papeleria: '✏️ Papelería' };
+
+            filteredInventory.forEach(p => {
+
+                const catLabel = catLabels[p.category] || p.category;
 
                 html += `<tr>
 
                     <td><strong>${p.name}</strong></td>
 
-                    <td>${p.category}</td>
+                    <td>${catLabel}</td>
 
                     <td style="color: ${p.quantity <= 10 ? 'var(--color-danger)' : 'var(--color-text-secondary)'}; font-weight: 600;">${p.quantity}</td>
 
