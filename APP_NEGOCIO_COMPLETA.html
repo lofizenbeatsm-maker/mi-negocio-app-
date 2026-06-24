@@ -3865,6 +3865,8 @@
 
                             <button class="btn btn-success" onclick="exportInventoryCSV()">📄 Exportar CSV</button>
 
+                            <button class="btn btn-ghost" onclick="importInventoryCSV()">📥 Importar CSV</button>
+
                             <button class="btn btn-ghost" onclick="printInventory()">🖨️ Imprimir</button>
 
                         </div>
@@ -6074,6 +6076,232 @@
             const data = inventory.map(p => [p.name, p.category, p.quantity, p.price || 0, p.priceUSD || 0, p.priceCOP || 0]);
 
             exportToCSV(data, headers, "inventario_" + new Date().toISOString().split("T")[0] + ".csv");
+
+        }
+
+
+
+        function importInventoryCSV() {
+
+            const input = document.createElement('input');
+
+            input.type = 'file';
+
+            input.accept = '.csv';
+
+            input.onchange = function(e) {
+
+                const file = e.target.files[0];
+
+                if (!file) return;
+
+                const reader = new FileReader();
+
+                reader.onload = function(ev) {
+
+                    try {
+
+                        const text = ev.target.result;
+
+                        const lines = text.split(/\r?\n/);
+
+                        if (lines.length < 2) {
+
+                            showToast('El archivo está vacío o es inválido', 'error');
+
+                            return;
+
+                        }
+
+                        const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/['"“”]/g, ''));
+
+                        const nameIdx = headers.findIndex(h => h.includes('nombre') || h.includes('name') || h.includes('producto'));
+
+                        const catIdx = headers.findIndex(h => h.includes('categor') || h.includes('category') || h.includes('secci'));
+
+                        const priceIdx = headers.findIndex(h => h.includes('precio') || h.includes('price') || h.includes('venta'));
+
+                        const costIdx = headers.findIndex(h => h.includes('costo') || h.includes('cost') || h.includes('compra'));
+
+                        const qtyIdx = headers.findIndex(h => h.includes('cant') || h.includes('qty') || h.includes('stock') || h.includes('unidades'));
+
+                        if (nameIdx === -1 || catIdx === -1) {
+
+                            showToast('CSV inválido. Debe contener columnas de Nombre y Categoría', 'error');
+
+                            return;
+
+                        }
+
+                        let addedCount = 0;
+
+                        let skippedCount = 0;
+
+                        let maxId = inventory.reduce((max, p) => p.id > max ? p.id : max, 0);
+
+                        for (let i = 1; i < lines.length; i++) {
+
+                            const line = lines[i].trim();
+
+                            if (!line) continue;
+
+                            const row = [];
+
+                            let inQuotes = false;
+
+                            let currentVal = '';
+
+                            for (let c = 0; c < line.length; c++) {
+
+                                const char = line[c];
+
+                                if (char === '"' || char === "'") {
+
+                                    inQuotes = !inQuotes;
+
+                                } else if (char === ',' && !inQuotes) {
+
+                                    row.push(currentVal.trim());
+
+                                    currentVal = '';
+
+                                } else {
+
+                                    currentVal += char;
+
+                                }
+
+                            }
+
+                            row.push(currentVal.trim());
+
+                            if (row.length <= Math.max(nameIdx, catIdx)) continue;
+
+                            const name = row[nameIdx].replace(/['"“”]/g, '');
+
+                            let category = row[catIdx].toLowerCase().replace(/['"“”]/g, '').normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                            if (category.includes('charc') || category.includes('carne') || category.includes('prote')) {
+
+                                category = 'charcuteria';
+
+                            } else if (category.includes('viver') || category.includes('grain') || category.includes('grano')) {
+
+                                category = 'viveres';
+
+                            } else if (category.includes('papel') || category.includes('offic') || category.includes('escolar')) {
+
+                                category = 'papeleria';
+
+                            } else {
+
+                                category = 'viveres';
+
+                            }
+
+                            if (!name) continue;
+
+                            const normalizedNewName = name.toLowerCase().trim();
+
+                            const exists = inventory.some(p => p.name.toLowerCase().trim() === normalizedNewName);
+
+                            if (exists) {
+
+                                skippedCount++;
+
+                                continue;
+
+                            }
+
+                            let price = priceIdx !== -1 && row[priceIdx] ? parseFloat(row[priceIdx]) : null;
+
+                            let cost = costIdx !== -1 && row[costIdx] ? parseFloat(row[costIdx]) : null;
+
+                            let quantity = qtyIdx !== -1 && row[qtyIdx] ? parseInt(row[qtyIdx]) : 50;
+
+                            if (price === null || isNaN(price)) {
+
+                                if (category === 'charcuteria') price = 20000;
+
+                                else if (category === 'viveres') price = 6000;
+
+                                else price = 4000;
+
+                            }
+
+                            if (cost === null || isNaN(cost)) {
+
+                                cost = Math.round(price * 0.6);
+
+                            }
+
+                            if (isNaN(quantity) || quantity < 0) {
+
+                                quantity = 50;
+
+                            }
+
+                            const priceUSD = Math.round((price / 5000) * 100) / 100;
+
+                            maxId++;
+
+                            inventory.push({
+
+                                id: maxId,
+
+                                name: name,
+
+                                category: category,
+
+                                price: price,
+
+                                priceUSD: priceUSD,
+
+                                priceCOP: price,
+
+                                cost: cost,
+
+                                quantity: quantity
+
+                            });
+
+                            addedCount++;
+
+                        }
+
+                        if (addedCount > 0) {
+
+                            saveData();
+
+                            updateDashboard();
+
+                            renderInventoryTable();
+
+                            renderProducts();
+
+                            filterProducts();
+
+                            showToast(`📥 Importación exitosa: ${addedCount} productos agregados (${skippedCount} duplicados omitidos)`);
+
+                        } else {
+
+                            showToast(`Omitidos ${skippedCount} productos (ya existían en el inventario)`, 'info');
+
+                        }
+
+                    } catch(err) {
+
+                        showToast('Error al importar CSV: ' + err.message, 'error');
+
+                    }
+
+                };
+
+                reader.readAsText(file, 'utf-8');
+
+            };
+
+            input.click();
 
         }
 
